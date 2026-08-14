@@ -1,10 +1,15 @@
+using Microsoft.EntityFrameworkCore;
 using TripTrack.Components;
+using TripTrack.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+builder.Services.AddDbContext<UserContext>(options =>
+    options.UseSqlite("Data Source=database.db"));
 
 var app = builder.Build();
 
